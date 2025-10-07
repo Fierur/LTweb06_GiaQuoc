@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <script src="~/Scripts/js/script.js" defer></script>
+
+    <style>
+        .user-info {
+            position: absolute;
+            right: 20px;
+            top: 80px;
+            background-color: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #f1f1f1;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">@Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</div>
+                <nav>
+                    <ul>
+                        <li>@Html.ActionLink("Trang Chủ", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Giới Thiệu", "About", "Home")</li>
+                        <li class="dropdown">
+                            <a href="#">Thông Tin <b>></b></a>
+                            <div class="dropdown-content">
+                                <a href="@Url.Action("LichSuGiaoDich", "Home", new { makh = ViewBag.MaKH, tenkh = ViewBag.TenKH })">Lịch sử giao dịch</a>                            </div>
+                        </li>
+                        <li>@Html.ActionLink("Sản Phẩm", "HienThiSPTheoMaLoai", "Home")</li>
+                        <li>@Html.ActionLink("Tìm Kiếm", "TimKiem", "Home")</li>
+                        <li>@Html.ActionLink("Liên Hệ", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Đăng Nhập", "DangNhap", "Home", null, new { @class = "btn btn-login" })</li>
+                        <li>@Html.ActionLink("Đăng Xuất", "DangXuat", "Home", null, new { @class = "btn btn-login" })</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </nav>
+
+    @if (ViewBag.TenKH != null)
+    {
+        <div class="user-info" style="margin-right:10%">
+            Hello World: <b>@ViewBag.TenKH | @ViewBag.MaKH</b>
+        </div>
+    }
+
+</div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>Thông Tin Liên Hệ</h3>
+                        <p>Địa chỉ: 123 Đường ABC, Quận XYZ, TP. Hồ Chí Minh</p>
+                        <p>Điện thoại: (0123) 456-789</p>
+                        <p>Email: contact@example.com</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Liên Kết Nhanh</h3>
+                        <a href="#">Trang Chủ</a>
+                        <a href="#">Giới Thiệu</a>
+                        <a href="#">Dịch Vụ</a>
+                        <a href="#">Sản Phẩm</a>
+                    </div>
+                    <div class="footer-section">
+                        <h3>Theo Dõi Chúng Tôi</h3>
+                        <a href="#">Facebook</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">LinkedIn</a>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2023 Tên Công Ty. Tất cả các quyền được bảo lưu. | Phát triển bởi Nhóm Phát Triển</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

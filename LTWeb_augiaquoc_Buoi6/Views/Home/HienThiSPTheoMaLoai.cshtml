@@ -1,0 +1,81 @@
+﻿@model LTWeb_augiaquoc_Buoi6.ViewModel.Loai_SP_ViewModel
+@{
+    ViewBag.Title = "HienThiSPTheoMaLoai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .side-bar {
+        background-color: #f8f9fa;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+        .side-bar h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .side-bar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+            .side-bar ul li {
+                display: inline-block;
+            }
+
+                .side-bar ul li a {
+                    display: block;
+                    padding: 10px 20px;
+                    color: #333;
+                    text-decoration: none;
+                    border-radius: 5px;
+                    background-color: #fff;
+                    border: 1px solid #ddd;
+                    transition: all 0.3s ease;
+                }
+
+                    .side-bar ul li a:hover {
+                        background-color: #007bff;
+                        color: white;
+                        border-color: #007bff;
+                    }
+</style>
+<div class="side-bar">
+    <div class="container">
+        <h3>Danh Mục Sản Phẩm</h3>
+        <ul>
+            @foreach (var loai in Model.loais)
+            {
+                <li>
+                    <a href="/Home/HienThiSPTheoMaLoai?maloai=@loai.maloai&tenkh=@ViewBag.TenKH&makh=@ViewBag.MaKH">
+                        @loai.tenloai
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="card-container" style="display:grid ; align-items:center; justify-content:center;">
+    @foreach (var item in Model.sanphams)
+    {
+        <div class="card" style="width:100%; max-height:340px;">
+            <div class="card-img-container" style="display:flex; align-items:center; justify-content:center; height:200px;">
+                <img src="~/Content/images/@item.hinh" alt="@item.tensp" style="max-width: 250px; height: 200px; " />
+            </div>
+            <div class="card-container">
+                <h3 class="card-title">@item.tensp</h3>
+                <p class="card-text">Giá: @item.gia</p>
+                <a href="/Home/HienThiChiTietSP?masp=@item.masp" class="card-button">Chi tiết</a>
+            </div>
+        </div>
+    }
+</div>
+</div>
+

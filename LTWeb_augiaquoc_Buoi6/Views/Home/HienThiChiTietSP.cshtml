@@ -1,0 +1,56 @@
+﻿@model LTWeb_augiaquoc_Buoi6.Models.SanPham
+
+@{
+    ViewBag.Title = "HienThiChiTietSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    table.sanpham {
+        width: 100%;
+        border-collapse: collapse; 
+        margin-top: 10px;
+        text-align: left;
+        background-color: #fdfdfd;
+    }
+
+        table.sanpham th, table.sanpham td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+        }
+
+        table.sanpham th {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+        }
+
+        table.sanpham tr:nth-child(even) {
+            background-color: #f9f9f9; 
+        }
+</style>
+
+<div>
+    <h4>Thông tin sản phẩm</h4>
+    <hr />
+    <table class="sanpham">
+        <thead>
+            <tr>
+                <th>Tên SP</th>
+                <th>Mã SP</th>
+                <th>Giá</th>
+                <th>Ghi chú</th>
+                <th>        </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(model => model.tensp)</td>
+                <td>@Html.DisplayFor(model => model.masp)</td>
+                <td>@Html.DisplayFor(model => model.gia)</td>
+                <td>@Html.DisplayFor(model => model.ghichu)</td>
+                <td><img src="~/Content/images/@Model.hinh" alt="@Model.tensp" style="max-width: 140px; display: block; margin: auto; " /></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

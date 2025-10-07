@@ -1,0 +1,47 @@
+﻿@model List<LTWeb_augiaquoc_Buoi6.Models.HoaDon>
+@{
+    ViewBag.Title = "LichSuGiaoDich";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Lịch Sử Giao Dịch</h2>
+
+        <div class="user-info" style="margin-right:10%">
+            Hello World: <b>@ViewBag.TenKH | @ViewBag.MaKH</b>
+        </div>
+
+    @if (string.IsNullOrEmpty(ViewBag.MaKH))
+    {
+        <div style="color: red; padding: 20px; background-color: #ffe6e6; margin-bottom: 15px;">
+            <p><strong>Bạn chưa đăng nhập!</strong></p>
+            <p>Vui lòng <a href="@Url.Action("DangNhap", "Home")">đăng nhập</a> để xem lịch sử giao dịch.</p>
+        </div>
+    }
+    else if (Model != null && Model.Any())
+    {
+        <table border="1" cellpadding="10" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #007bff; color: white;">
+                    <th>Mã hóa đơn</th>
+                    <th>Ngày tạo</th>
+                    <th>Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var hd in Model)
+                {
+                    <tr>
+                        <td>@hd.mahoadon</td>
+                        <td>@hd.ngaytao.ToString("dd/MM/yyyy")</td>
+                        <td><a href="@Url.Action("ChiTietHoaDon", "Home", new { mahoadon = hd.mahoadon, makh = ViewBag.MaKH, tenkh = ViewBag.TenKH })">Xem chi tiết</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Bạn chưa có giao dịch nào.</p>
+    }
+</div>

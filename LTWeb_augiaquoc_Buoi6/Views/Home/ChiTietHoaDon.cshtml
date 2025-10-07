@@ -1,0 +1,44 @@
+﻿@model List<LTWeb_augiaquoc_Buoi6.Models.ChiTiet>
+@{
+    ViewBag.Title = "ChiTietHoaDon";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Chi Tiết Hóa Đơn: @ViewBag.MaHoaDon</h2>
+    @if (ViewBag.TenKH != null)
+    {
+        <div class="user-info" style="margin-right:10%">
+            Hello World: <b>@ViewBag.TenKH | @ViewBag.MaKH</b>
+        </div>
+    }
+    @if (Model != null && Model.Any())
+    {
+        <table border="1" cellpadding="10" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #007bff; color: white;">
+                    <th>Mã sản phẩm</th>
+                    <th>Số lượng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var ct in Model)
+                {
+                    <tr>
+                        <td>@ct.masp</td>
+                        <td>@ct.soluong</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Không có chi tiết hóa đơn.</p>
+    }
+
+    <br />
+    <a href="@Url.Action("LichSuGiaoDich", "Home", new { makh = ViewBag.MaKH, tenkh = ViewBag.TenKH })" style="padding: 10px 20px; background-color: #007bff; color: white; text-decoration: none; display: inline-block;">
+        Quay lại
+    </a>
+</div>

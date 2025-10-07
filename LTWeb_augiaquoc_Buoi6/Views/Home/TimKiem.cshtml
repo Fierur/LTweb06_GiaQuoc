@@ -1,0 +1,72 @@
+﻿@model LTWeb_augiaquoc_Buoi6.ViewModel.Loai_SP_ViewModel
+@{
+    ViewBag.Title = "TimKiem";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Tìm Kiếm Sản Phẩm</h2>
+
+    <form method="post" action="@Url.Action("TimKiem", "Home")">
+        <input type="hidden" name="tenkh" value="@ViewBag.TenKH" />
+        <input type="hidden" name="makh" value="@ViewBag.MaKH" />
+
+        <div style="margin-bottom: 15px;">
+            <label>Loại sản phẩm:</label>
+            <select name="maloai" style="width: 200px; padding: 8px;">
+                <option value="">-- Tất cả --</option>
+                @foreach (var loai in Model.loais)
+                {
+                    <option value="@loai.maloai">@loai.tenloai</option>
+                }
+            </select>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Sắp xếp theo giá:</label>
+            <select name="sapxep" style="width: 200px; padding: 8px;">
+                <option value="">-- Không sắp xếp --</option>
+                <option value="cao">Giá cao đến thấp</option>
+                <option value="thap">Giá thấp đến cao</option>
+            </select>
+        </div>
+
+        <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer;">
+            Tìm Kiếm
+        </button>
+    </form>
+
+    <hr />
+
+    <h3>Kết quả tìm kiếm</h3>
+    @if (Model.sanphams != null && Model.sanphams.Any())
+    {
+        <table border="1" cellpadding="10" style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #007bff; color: white;">
+                    <th>Hình</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Ghi chú</th>
+                    <th>Chi tiết</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sp in Model.sanphams)
+                {
+                    <tr>
+                        <td><img src="~/Content/images/@sp.hinh" alt="@sp.tensp" style="width: 80px;" /></td>
+                        <td>@sp.tensp</td>
+                        <td>@sp.gia.ToString("N0") VNĐ</td>
+                        <td>@sp.ghichu</td>
+                        <td><a href="/Home/HienThiChiTietSP?masp=@sp.masp&tenkh=@ViewBag.TenKH&makh=@ViewBag.MaKH">Xem chi tiết</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>Không tìm thấy sản phẩm nào.</p>
+    }
+</div>

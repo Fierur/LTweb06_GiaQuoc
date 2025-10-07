@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Đăng Nhập</h2>
+
+    
+
+    <form method="post" action="@Url.Action("DangNhap", "Home")">
+        <div style="margin-bottom: 15px;">
+            <label>Số điện thoại:</label>
+            <input type="text" name="sodt" required style="width: 100%; padding: 8px;" />
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Mật khẩu:</label>
+            <input type="password" name="pass" required style="width: 100%; padding: 8px;" />
+        </div>
+
+        <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; cursor: pointer;">
+            Đăng Nhập
+        </button>
+    </form>
+</div>
